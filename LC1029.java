@@ -1,6 +1,5 @@
 // Runtime: 1 ms, faster than 98.89% of Java online submissions for Two City Scheduling.
-// Memory Usage: 40 MB, less than 41.67% of Java online submissions for Two City Scheduling.
-
+// Memory Usage: 39 MB, less than 61.11% of Java online submissions for Two City Scheduling.
 import java.util.Random;
 
 class Solution {
