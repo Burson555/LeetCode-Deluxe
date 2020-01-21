@@ -28,5 +28,55 @@ class Solution {
         temp = temp.next;
         return ret_val;
     }
-    
 }
+
+
+// Runtime: 2 ms, faster than 40.90% of Java online submissions for Palindrome Linked List.
+// Memory Usage: 48.1 MB, less than 6.10% of Java online submissions for Palindrome Linked List.
+// class Solution {
+//     public boolean isPalindrome(ListNode head) {
+//         if (head == null)
+//             return true;
+        
+//         int length = 0;
+//         ListNode temp = head;
+//         while (temp != null) {
+//             length++;
+//             temp = temp.next;
+//         }
+        
+//         temp = head;
+//         for (int i = 0; i < (length-1)/2; i++)
+//             temp = temp.next;
+//         temp.next = this.reverseLinkedList(temp.next);
+        
+//         ListNode l_ptr = head;
+//         ListNode r_ptr = temp.next;
+//         while (r_ptr != null) {
+//             if (r_ptr.val != l_ptr.val){
+//                 temp.next = this.reverseLinkedList(temp.next);
+//                 return false;
+//             }
+//             l_ptr = l_ptr.next;
+//             r_ptr = r_ptr.next;
+//         }
+//         temp.next = this.reverseLinkedList(temp.next);
+        
+//         return true;
+//     }
+    
+//     private ListNode reverseLinkedList(ListNode head) {
+//         if (head == null)
+//             return null;
+//         ListNode prev = null;
+//         ListNode curr = head;
+//         ListNode temp = head;
+//         while (curr != null) {
+//             temp = temp.next;
+//             curr.next = prev;
+//             prev = curr;
+//             curr = temp;
+//         }
+//         return prev;
+//     }
+// }
