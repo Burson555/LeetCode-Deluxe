@@ -33,10 +33,8 @@ class Solution {
             this.rl.add(s);
         } else {
             String temp = this.ht.get(digits.charAt(curr));
-            for (int i = 0; i < temp.length(); i++) {
-                char c = temp.charAt(i);
-                this.create(String.valueOf(s)+c, digits, curr+1);
-            }
+            for (char c : temp.toCharArray())
+                this.create(s+c, digits, curr+1);
         }
     }
 }
