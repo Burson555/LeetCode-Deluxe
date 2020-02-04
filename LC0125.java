@@ -13,27 +13,28 @@
 //      If we try to modify the content of the string, we will be able to modify it.
 class Solution {
     public boolean isPalindrome(String s) {
+
         int lp = 0, rp = s.length()-1;
+        
         while (lp < rp) {
-            char l;
+            char lc, rc;
             if (this.isUpper(s.charAt(lp))) {
-                l = (char)('a' + s.charAt(lp) - 'A');
+                lc = (char)('a' + s.charAt(lp) - 'A');
             } else if (this.isValid(s.charAt(lp))) {
-                l = s.charAt(lp);
+                lc = s.charAt(lp);
             } else {
                 lp++;
                 continue;
             }
-            char r;
             if (this.isUpper(s.charAt(rp))) {
-                r = (char)('a' + s.charAt(rp) - 'A');
+                rc = (char)('a' + s.charAt(rp) - 'A');
             } else if (this.isValid(s.charAt(rp))) {
-                r = s.charAt(rp);
+                rc = s.charAt(rp);
             } else {
                 rp--;
                 continue;
             }
-            if (r != l) return false;
+            if (rc != lc) return false;
             lp++;
             rp--;
         }
