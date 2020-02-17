@@ -1,8 +1,6 @@
-// Runtime: 7 ms, faster than 39.27% of Java online submissions for Roman to Integer.
-// Memory Usage: 41.3 MB, less than 5.48% of Java online submissions for Roman to Integer.
-// Runtime: 6 ms, faster than 53.42% of Java online submissions for Roman to Integer.
-// Memory Usage: 41.4 MB, less than 5.48% of Java online submissions for Roman to Integer.
-// Runtime: 7 ms, faster than 39.27% of Java online submissions for Roman to Integer.
+// Runtime: 7 ms, faster than 34.83% of Java online submissions for Roman to Integer.
+// Memory Usage: 41.7 MB, less than 5.48% of Java online submissions for Roman to Integer.
+// Runtime: 7 ms, faster than 34.83% of Java online submissions for Roman to Integer.
 // Memory Usage: 41.3 MB, less than 5.48% of Java online submissions for Roman to Integer.
 
 class Solution {
@@ -15,22 +13,53 @@ class Solution {
         hm.put("C", 100);
         hm.put("D", 500);
         hm.put("M", 1000);
-        String prev = "N";
+        String prev = null;
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
             String curr = s.substring(i, i+1);
             count += hm.get(curr).intValue();
-            if (prev.equals("I") && (curr.equals("V") || curr.equals("X")))
-                count -= 2*hm.get(prev).intValue();
-            else if (prev.equals("X") && (curr.equals("L") || curr.equals("C")))
-                count -= 2*hm.get(prev).intValue();
-            else if (prev.equals("C") && (curr.equals("D") || curr.equals("M")))
+            if (prev != null && hm.get(curr) > hm.get(prev))
                 count -= 2*hm.get(prev).intValue();
             prev = curr;
         }
         return count;
     }
 }
+
+
+// // Runtime: 7 ms, faster than 39.27% of Java online submissions for Roman to Integer.
+// // Memory Usage: 41.3 MB, less than 5.48% of Java online submissions for Roman to Integer.
+// // Runtime: 6 ms, faster than 53.42% of Java online submissions for Roman to Integer.
+// // Memory Usage: 41.4 MB, less than 5.48% of Java online submissions for Roman to Integer.
+// // Runtime: 7 ms, faster than 39.27% of Java online submissions for Roman to Integer.
+// // Memory Usage: 41.3 MB, less than 5.48% of Java online submissions for Roman to Integer.
+
+// class Solution {
+//     public int romanToInt(String s) {
+//         HashMap<String, Integer> hm = new HashMap<String, Integer>();
+//         hm.put("I", 1);
+//         hm.put("V", 5);
+//         hm.put("X", 10);
+//         hm.put("L", 50);
+//         hm.put("C", 100);
+//         hm.put("D", 500);
+//         hm.put("M", 1000);
+//         String prev = "N";
+//         int count = 0;
+//         for (int i = 0; i < s.length(); i++) {
+//             String curr = s.substring(i, i+1);
+//             count += hm.get(curr).intValue();
+//             if (prev.equals("I") && (curr.equals("V") || curr.equals("X")))
+//                 count -= 2*hm.get(prev).intValue();
+//             else if (prev.equals("X") && (curr.equals("L") || curr.equals("C")))
+//                 count -= 2*hm.get(prev).intValue();
+//             else if (prev.equals("C") && (curr.equals("D") || curr.equals("M")))
+//                 count -= 2*hm.get(prev).intValue();
+//             prev = curr;
+//         }
+//         return count;
+//     }
+// }
 
 // // BELOW IS A FASTER SOLUTION, USING AN INHERENT FEATURE OF ROMAN NUMBERS
 // class Solution {
