@@ -1,5 +1,7 @@
-// Runtime: 406 ms, faster than 5.20% of Java online submissions for Kth Largest Element in an Array.
-// Memory Usage: 41.4 MB, less than 5.18% of Java online submissions for Kth Largest Element in an Array.
+// Runtime: 1 ms, faster than 98.29% of Java online submissions for Kth Largest Element in an Array.
+// Memory Usage: 40.8 MB, less than 5.18% of Java online submissions for Kth Largest Element in an Array.
+// Runtime: 1 ms, faster than 98.29% of Java online submissions for Kth Largest Element in an Array.
+// Memory Usage: 40.9 MB, less than 5.18% of Java online submissions for Kth Largest Element in an Array.
 
 import java.util.Random;
 
@@ -18,10 +20,6 @@ class Solution {
             if (nums[i] > nums[high])
                 this.swap(nums, i, pos++);
         this.swap(nums, high, pos);
-        System.out.print(pos + ": ");
-        for (int j : nums)
-            System.out.print(j + " ");
-        System.out.println();
         if (pos < k) 
             return this.mySelect(nums, pos+1, high, k);
         if (pos > k) 
@@ -35,3 +33,24 @@ class Solution {
         nums[b] = temp;
     }
 }
+
+
+// // Runtime: 3 ms, faster than 75.69% of Java online submissions for Kth Largest Element in an Array.
+// // Memory Usage: 40.7 MB, less than 5.18% of Java online submissions for Kth Largest Element in an Array.
+// // Runtime: 3 ms, faster than 75.69% of Java online submissions for Kth Largest Element in an Array.
+// // Memory Usage: 40.7 MB, less than 5.18% of Java online submissions for Kth Largest Element in an Array.
+
+// class Solution {
+//     public int findKthLargest(int[] nums, int k) {
+//         PriorityQueue<Integer> pq= new PriorityQueue<Integer>();
+//         for (int i = 0; i < nums.length; i++) {
+//             if (pq.size() < k) {
+//                 pq.offer(nums[i]);
+//             } else if (pq.peek() < nums[i]) {
+//                 pq.poll();
+//                 pq.offer(nums[i]);
+//             }
+//         }
+//         return pq.peek();
+//     }
+// }

@@ -1,3 +1,30 @@
+// Runtime: 1 ms, faster than 93.46% of Java online submissions for Count and Say.
+// Memory Usage: 36.8 MB, less than 47.37% of Java online submissions for Count and Say.
+
+// The only difference I made here was to replace string addition (using "+")
+// by Java StringBuilder class, which is easy to use and FAST.
+class Solution {
+    public String countAndSay(int n) {
+        StringBuilder curr = new StringBuilder("1");
+        StringBuilder prev;
+        int count = 1;
+        while (n > count++) {
+            prev = curr;
+            curr = new StringBuilder();
+            char c = prev.charAt(0);
+            int num_c = 1;
+            for (int i = 1; i < prev.length(); i++) {
+                if (c != prev.charAt(i)) {
+                    curr.append(num_c).append(c);
+                    c = prev.charAt(i);
+                    num_c = 1;
+                } else {num_c++;}
+            }
+            curr.append(num_c).append(c);
+        }
+        return curr.toString();
+    }
+}
 
 
 // // NO BETTER
