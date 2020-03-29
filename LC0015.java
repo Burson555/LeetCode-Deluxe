@@ -31,3 +31,32 @@ class Solution {
         return rl;
     }
 }
+
+
+// // Runtime: 267 ms, faster than 22.31% of Java online submissions for 3Sum.
+// // Memory Usage: 44 MB, less than 99.65% of Java online submissions for 3Sum.
+
+// class Solution {
+//     public List<List<Integer>> threeSum(int[] nums) {
+//         int n = nums.length;
+//         List<List<Integer>> res = new LinkedList<>();
+//         if (n < 3) return res;
+//         Arrays.sort(nums);
+//         for (int i = 0; i < n-2; i++) {
+//             if (i != 0 && nums[i] == nums[i-1]) continue;
+//             int target = -nums[i];
+//             HashSet<Integer> temp_hs = new HashSet<>();
+//             HashSet<Integer> visited = new HashSet<>();
+//             for (int j = i+1; j < n; j++) {
+//                 if (temp_hs.contains(target-nums[j]) && !visited.contains(nums[j])) {
+//                     res.add(Arrays.asList(nums[i], nums[j], target-nums[j]));
+//                     visited.add(nums[j]);
+//                     visited.add(target-nums[j]);
+//                 } else {
+//                     temp_hs.add(nums[j]);
+//                 }
+//             }
+//         }
+//         return res;
+//     }
+// }
