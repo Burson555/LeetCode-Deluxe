@@ -1,22 +1,32 @@
-// Runtime: 1 ms, faster than 66.31% of Java online submissions for Maximum Subarray.
-// Memory Usage: 41.5 MB, less than 5.16% of Java online submissions for Maximum Subarray.
-// Runtime: 1 ms, faster than 66.31% of Java online submissions for Maximum Subarray.
-// Memory Usage: 41.5 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+// SPACE OPTIMIZED
 // Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Subarray.
-// Memory Usage: 41.8 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+// Memory Usage: 39.4 MB, less than 8.92% of Java online submissions for Maximum Subarray.
 
 class Solution {
     public int maxSubArray(int[] nums) {
-        int dp[] = new int[nums.length];
+        int res = Integer.MIN_VALUE, dp = Integer.MIN_VALUE;
+        for (int i : nums) {
+            dp = (dp > 0) ? dp+i : i;
+            if (dp > res) res = dp;
+        }
+        return res;
+    }
+}
+
+
+// Runtime: 2 ms, faster than 12.45% of Java online submissions for Maximum Subarray.
+// Memory Usage: 42.2 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length, res = nums[0];
+        int dp[] = new int[n];
         dp[0] = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            dp[i] = (dp[i-1] < 0) ? nums[i] : dp[i-1]+nums[i];
+        for (int i = 1; i < n; i++) {
+            dp[i] = (dp[i-1] > 0) ? dp[i-1] + nums[i] : nums[i];
+            if (dp[i] > res) res = dp[i];
         }
-        int max_sum = dp[0];
-        for (int i = 1; i < dp.length; i++) {
-            max_sum = (dp[i] > max_sum) ? dp[i] : max_sum;
-        }
-        return max_sum;
+        return res;
     }
 }
 
