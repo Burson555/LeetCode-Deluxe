@@ -1,3 +1,45 @@
+// Runtime: 0 ms, faster than 100.00% of Java online submissions for Letter Combinations of a Phone Number.
+// Memory Usage: 37.8 MB, less than 6.16% of Java online submissions for Letter Combinations of a Phone Number.
+
+class Solution {
+    
+    List<String> res_l;
+    HashMap<String, String> ht;
+    
+    public List<String> letterCombinations(String digits) {
+        ht = new HashMap<>();
+        ht.put("2", "abc");
+        ht.put("3", "def");
+        ht.put("4", "ghi");
+        ht.put("5", "jkl");
+        ht.put("6", "mno");
+        ht.put("7", "pqrs");
+        ht.put("8", "tuv");
+        ht.put("9", "wxyz");
+        res_l = new LinkedList<>();
+        if (digits.length() == 0) return res_l;
+        dfs(digits, 0, new StringBuilder());
+        return res_l;
+    }
+    
+    private void dfs(String digits, int index, StringBuilder sb) {
+        // quit condition
+        if (index == digits.length()) {
+            res_l.add(sb.toString());
+            return;
+        }
+        
+        // node selection
+        String curr = digits.substring(index, index+1);
+        for (char c : ht.get(curr).toCharArray()) {
+            sb.append(c);
+            dfs(digits, index+1, sb);
+            sb.deleteCharAt(index);
+        }
+    }
+}
+
+
 // Runtime: 1 ms, faster than 59.79% of Java online submissions for Letter Combinations of a Phone Number.
 // Memory Usage: 38 MB, less than 6.16% of Java online submissions for Letter Combinations of a Phone Number.
 // Runtime: 1 ms, faster than 59.79% of Java online submissions for Letter Combinations of a Phone Number.

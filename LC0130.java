@@ -1,7 +1,5 @@
-// this algorithm follows a check and set manner
-// when we enounter a letter 'O'
-// we first check whether it connects an 'O' on the edge
-// if not, we sink this island
+// Runtime: 3 ms, faster than 33.16% of Java online submissions for Surrounded Regions.
+// Memory Usage: 48.9 MB, less than 7.14% of Java online submissions for Surrounded Regions.
 
 class Solution {
     
@@ -12,33 +10,36 @@ class Solution {
         n = board.length;
         if (n == 0) return;
         m = board[0].length;
+        
+        // scan first and last row
+        for (int i = 0; i < m; i++) {
+            if (board[0][i] == 'O') boundary_sink(board, 0, i);
+            if (board[n-1][i] == 'O') boundary_sink(board, n-1, i);
+        }
+        
+        // scan first and last column
+        for (int i = 0; i < n; i++) {
+            if (board[i][0] == 'O') boundary_sink(board, i, 0);
+            if (board[i][m-1] == 'O') boundary_sink(board, i, m-1);
+        }
+        
+        // final conversion
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (board[i][j] == 'O' && isEnclosed(board, i, j))
-                    sink(board, i, j);
+                if (board[i][j] == 'O') board[i][j] = 'X';
+                if (board[i][j] == '*') board[i][j] = 'O';
             }
         }
     }
 
-    private boolean isEnclosed(char[][] board, int i, int j) {
-        if (i == 0 || i == n-1 || j == 0 || j == m-1) {
-            if (board[i][j] == 'O') return false;
-            else return true;
+    private void boundary_sink(char[][] board, int i, int j) {
+        if ((0 <= i && i <= n-1 && 0 <= j && j <= m-1)
+           && board[i][j] == 'O') {
+            board[i][j] = '*';
+            boundary_sink(board, i-1, j);
+            boundary_sink(board, i+1, j);
+            boundary_sink(board, i, j-1);
+            boundary_sink(board, i, j+1);
         }
-        if (board[i][j] == 'X') return true;
-        board[i][j] = 'X';
-        boolean temp = isEnclosed(board, i+1, j) && isEnclosed(board, i-1, j) &&
-                        isEnclosed(board, i, j+1) && isEnclosed(board, i, j-1);
-        board[i][j] = 'O';
-        return temp;
-    }
-
-    private void sink(char[][] board, int i, int j) {
-        if (board[i][j] == 'X') return;
-        board[i][j] = 'X';
-        sink(board, i+1, j);
-        sink(board, i-1, j);
-        sink(board, i, j+1);
-        sink(board, i, j-1);
     }
 }

@@ -3,15 +3,17 @@
 
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        Map<Integer, Integer> hm = new HashMap<>();
-        int sum = 0, res = 0;
-        hm.put(0, 1);
+        int count = 0, n = nums.length, sum = 0;
+        HashMap<Integer, Integer> sum_to_count = new HashMap<>();
+        sum_to_count.put(sum, 1);
         for (int i : nums) {
             sum += i;
-            if (hm.containsKey(sum-k)) res += hm.get(sum-k);
-            hm.put(sum, 1+hm.getOrDefault(sum, 0));
+            int temp = sum-k;
+            if (sum_to_count.containsKey(temp))
+                count += sum_to_count.get(temp);
+            sum_to_count.put(sum, 1+sum_to_count.getOrDefault(sum, 0));
         }
-        return res;
+        return count;
     }
 }
 
@@ -20,15 +22,14 @@ class Solution {
 
 // class Solution {
 //     public int subarraySum(int[] nums, int k) {
-//         int n = nums.length;
-//         int res = 0;
-//         for (int i = 0; i < n; i++) {
-//             int temp_sum = 0;
-//             for (int j = i; j < n; j++) {
-//                 temp_sum += nums[j];
-//                 if (temp_sum == k) res += 1;
+//         int count = 0, n = nums.length;
+//         for (int start = 0; start < n; start++) {
+//             int sum = 0;
+//             for (int i = start; i < n; i++) {
+//                 sum += nums[i];
+//                 if (sum == k) count++;
 //             }
 //         }
-//         return res;
+//         return count;
 //     }
 // }
